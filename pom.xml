@@ -7,11 +7,12 @@
     <artifactId>SimpleSpring</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <spring.version>5.0.15.RELEASE</spring.version>
+        <spring.version>4.2.2.RELEASE</spring.version>
         <mysql.version>8.0.11</mysql.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <testng.version>6.8.7</testng.version>
         <aspectj.version>1.8.1</aspectj.version>
+        <servlet.version>3.0-alpha-1</servlet.version>
     </properties>
     <dependencies>
         <dependency>
@@ -86,13 +87,13 @@
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
         <dependency>
@@ -108,4 +109,23 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.25</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8000</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <contextPath>/biubiu</contextPath>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

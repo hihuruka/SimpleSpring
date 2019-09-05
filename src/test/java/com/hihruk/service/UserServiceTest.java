@@ -3,8 +3,11 @@ package com.hihruk.service;
 import com.hihruk.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -16,6 +19,8 @@ import static org.testng.Assert.assertTrue;
 public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests {
     @Autowired
     private UserService userService;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     public void testHasMatchUser() {
@@ -34,6 +39,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         }
     }
     @Test
+    @Rollback(false)
     public void testAddLoginLog(){
         User user=userService.findUserByUserName("admin");
         user.setUserId(1);
