@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <spring.version>4.2.2.RELEASE</spring.version>
-        <mysql.version>8.0.11</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <testng.version>6.8.7</testng.version>
         <aspectj.version>1.8.1</aspectj.version>
